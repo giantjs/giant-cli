@@ -16,4 +16,5 @@ fi
 
 giant run $1 "npm pack"
 
-giant run $1 "echo ../*/ | xargs -n 1 cp *.tgz"
+## using rsync instead of cp as rsync doesn't fail on src / dest being the same
+giant run $1 "echo ../*/ | xargs -n 1 rsync *.tgz"
