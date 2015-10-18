@@ -14,7 +14,6 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-
 if [[ $1 == batch ]]; then
     if [ $# -lt 2 ]; then
         echo "Usage:"
@@ -39,7 +38,8 @@ elif [[ $1 == build ]]; then
         (cat ./module-sequence.dat | xargs -n 1 giant build)
     else
         echo -e "${CYAN}Building module${NC} $2"
-        "$DIR/build-distribute.sh" $2
+        ## passing extra arguments to build script
+        "$DIR/build-distribute.sh" "${@:2}"
     fi
 elif [[ $1 == run ]]; then
     if [ $# -lt 3 ]; then
