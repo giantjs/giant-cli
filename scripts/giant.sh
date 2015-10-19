@@ -46,7 +46,7 @@ elif [[ $1 == run ]]; then
         echo "Usage:"
         echo "  giant run <module-name> <command>"
     else
-        (cd modules/$2 && eval $3)
+        (cd modules/$2 && eval ${@:3})
     fi
 else
     echo "Usage:"
