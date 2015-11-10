@@ -14,7 +14,20 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-if [[ $1 == batch ]]; then
+if [[ $1 == init ]]; then
+    if [ $# -lt 2 ]; then
+        echo -e "${CYAN}Initializing project${NC}"
+        git clone --depth=1 --branch=master git@github.com:giantjs/giant-project-boilerplate.git .
+        rm -rf .git
+        giant init shared
+        giant init application
+    else
+        echo -e "${CYAN}Initializing module $2${NC}"
+        mkdir modules/$2
+        git clone --depth=1 --branch=master git@github.com:giantjs/giant-module-boilerplate.git modules/$2
+        rm -rf modules/$2/.git
+    fi
+elif [[ $1 == batch ]]; then
     if [ $# -lt 2 ]; then
         echo "Usage:"
         echo "  giant batch <command>"
@@ -50,5 +63,5 @@ elif [[ $1 == run ]]; then
     fi
 else
     echo "Usage:"
-    echo "  giant (run|batch|clear|build) [module-name] [command]"
+    echo "  giant (init|run|batch|clear|build) [module-name] [command]"
 fi

@@ -11,24 +11,43 @@ Installation
 Usage
 -----
 
-Building a module
+### Initializing a project
+
+Pulls project boilerplate and initializes 2 basic modules: `application` & `shared`.
+
+1. Create the project folder
+2. `cd` into the project folder
+3. Issue `giant init`
+
+### Initializing a module
+
+Pulls module boilerplate.
+
+1. Make sure you're in the project folder
+2. Issue `giant init <moduleName>`
+
+### Building a module
+
+Builds the specified module.
 
     giant build <moduleName>
     
-Building all modules
+### Building all modules
+
+Builds all modules in the order specified in `module-sequence.dat`.
 
     giant build
-    
-(Expects the file `module-sequence.dat` to be present at the root of the project.)
 
-Clearing all modules (removing results of build)
+### Clearing all modules
+
+Removes temporary files.
 
     giant clear
     
-Running command for a specific module
+### Running command for a specific module
 
     giant run <moduleName> "<command>"
     
-Running a command for all modules
+### Running a command for all modules
 
     giant batch "<command>"
