@@ -17,14 +17,18 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 if [[ $1 == init ]]; then
     if [ $# -lt 2 ]; then
         echo -e "${CYAN}Initializing project${NC}"
-        git clone --depth=1 --branch=master git@github.com:giantjs/giant-project-boilerplate.git .
+        git clone --depth=1 --branch=master https://github.com/giantjs/giant-project-boilerplate.git .
         rm -rf .git
         giant init shared
         giant init application
     else
         echo -e "${CYAN}Initializing module $2${NC}"
         mkdir modules/$2
-        git clone --depth=1 --branch=master git@github.com:giantjs/giant-module-boilerplate.git modules/$2
+        if [[ $2 == application ]]; then
+            git clone --depth=1 --branch=master https://github.com/giantjs/giant-application-boilerplate.git modules/$2
+        else
+            git clone --depth=1 --branch=master https://github.com/giantjs/giant-module-boilerplate.git modules/$2
+        fi
         rm -rf modules/$2/.git
     fi
 elif [[ $1 == batch ]]; then
