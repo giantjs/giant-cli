@@ -6,7 +6,11 @@ set -e
 ##
 
 if [[ $(giant run $1 "ls *.tgz 2> /dev/null | grep tgz") ]]; then
-    giant run $1 "npm install *.tgz"
+    if [[ $(giant run $1 "ls giant-deps.dat 2> /dev/null | grep giant-deps.dat") ]]; then
+        giant run $1 "cat giant-deps.dat | xargs npm install"
+    else
+        giant run $1 "npm install *.tgz"
+    fi
 fi
 
 giant run $1 "npm prune"
