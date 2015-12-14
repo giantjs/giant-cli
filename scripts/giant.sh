@@ -46,17 +46,22 @@ elif [[ $1 == batch ]]; then
         done
         cd ..
     fi
-elif [[ $1 == clear ]]; then
-    echo -e "${CYAN}Clearing module packages${NC}"
-    $0 batch "rm -f *.tgz"
 elif [[ $1 == build ]]; then
     if [[ $# > 1 && $(cat ./module-sequence.dat | grep -- "$2") ]]; then
         echo -e "${CYAN}Building module $2${NC} ${@:3}"
         ## passing extra arguments to build script
-        "$DIR/build-distribute.sh" ${@:2}
+        "$DIR/build.sh" ${@:2}
     else
         echo -e "${CYAN}Building modules${NC} ${@:2}"
         (cat ./module-sequence.dat | xargs -n 1 -I {} giant build {} ${@:2})
+    fi
+elif [[ $1 == link ]]; then
+    if [[ $# > 1 && $(cat ./module-sequence.dat | grep -- "$2") ]]; then
+        echo -e "${CYAN}Linking module $2${NC}"
+        "$DIR/link.sh" ${@:2}
+    else
+        echo -e "${CYAN}Linking modules${NC} ${@:2}"
+        (cat ./module-sequence.dat | xargs -n 1 -I {} giant link {} ${@:2})
     fi
 elif [[ $1 == run ]]; then
     if [ $# -lt 3 ]; then
