@@ -3,6 +3,8 @@ Command line interface for Giant
 
 Collection of command line tools for managing Giant-based projects (including Giant itself).
 
+Stability: **UNSTABLE** (In development)
+
 Installation
 ------------
 
