@@ -1,6 +1,6 @@
 {
   "name": "giant-cli",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Command line interface for Giant",
   "keywords": [
     "batch",
@@ -9,7 +9,7 @@
     "tools"
   ],
   "author": "Dan Stocker <dan@kwaia.com>",
-  "copyright": "Copyright (c) 2015 Dan Stocker",
+  "copyright": "Copyright (c) 2015-2016 Dan Stocker",
   "license": "MIT",
   "repository": {
     "type": "git",
